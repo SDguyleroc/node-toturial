@@ -1,0 +1,1 @@
+This is texts inside the second.txt file
