@@ -78,43 +78,11 @@ app.get('/api/people', (request, response) => {
     response.json(people);
 })
 
-// app.all('*', (request, response) => {
-//     response.status(404).send('<h1>Resource not found</h1>');
-        
-// })
-
-app.get('/api/v1/query', (request, response) => {
-    console.log(request.query);
-
-    const { search, limit } = request.query;
-
-    // Create a copy of the products array to avoid mutating the original
-    let sortedProducts = [...products];
-
-    // Check if search is provided
-    if (search) {
-        // Filter products based on the search query (case-insensitive)
-        sortedProducts = sortedProducts.filter((product) => 
-            product.name.toLowerCase().includes(search.toLowerCase() )
-        );
-    }
-
-    // If limit is provided, slice the array to return only the number of products specified
-    if (limit) {
-      sortedProducts = sortedProducts.slice(0, Number(limit));
-    }
-    if (sortedProducts.length < 1) {
-        // response.status(200).send('No products matched your search');
-        return response.status(200).json({success: true, data: []});
-    }
-
-    // Return the filtered and/or limited products
-   return response.status(200).json(sortedProducts);
-});
-
+app.all('*', (request, response) => {
+    response.status(404).send('<h1>Resource not found</h1>');       
+})
 
 
 app.listen(5000, () => {    
     console.log('server is listening on port 5000... http://Localhost:5000');
 });
-
